@@ -15,7 +15,7 @@ public class CloudyView: UIView {
     public var cloudsShadowColor = UIColor.darkGrayColor()
     public var cloudsShadowRadius: CGFloat = 1.0
     public var cloudsShadowOpacity: Float = 1.0
-    public var minCloudSize: CGFloat = 10.0
+    public var minCloudSizeRatio: CGFloat = 0.5
     public var orientation = Orientation.Down
     
     private var cloudsLayer = CAShapeLayer() {
@@ -42,8 +42,8 @@ public class CloudyView: UIView {
     
     override public func drawRect(rect: CGRect) {
         super.drawRect(rect)
-        
-        let cloudsPath = pathForCloudsWithMinSize(minCloudSize, height: bounds.size.height)
+        let height = bounds.size.height - (cloudsShadowOffset.height + cloudsShadowRadius)
+        let cloudsPath = pathForCloudsWithMinSize(height * minCloudSizeRatio, height: height)
         drawCloudsWithPath(cloudsPath)
     }
     
@@ -101,7 +101,7 @@ internal extension CloudyView {
     }
     
     internal func randomPathForCloudWithMinSize(minSize: CGFloat, maxSize: CGFloat) -> UIBezierPath {
-        let randomSize = CGFloat(arc4random_uniform(UInt32(maxSize * 2)) + UInt32(minSize))
+        let randomSize = CGFloat(arc4random_uniform(UInt32(maxSize * 2 - minSize * 2)) + UInt32(minSize * 2))
         let cloudPath = UIBezierPath(ovalInRect: CGRectMake(0.0, 0.0, randomSize, randomSize))
         
         return cloudPath
