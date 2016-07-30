@@ -15,7 +15,7 @@ public class CloudyView: UIView {
     @IBInspectable public var cloudsShadowColor = UIColor.darkGrayColor()
     @IBInspectable public var cloudsShadowRadius: CGFloat = 1.0
     @IBInspectable public var cloudsShadowOpacity: Float = 1.0
-    @IBInspectable public var minCloudSizeRatio: CGFloat = 0.5
+    @IBInspectable public var minCloudSizeRatio: CGFloat = 0.2
     public var cloudsShadowOffset = CGSize(width: 0.0, height: 1.0)
     public var orientation = Orientation.Down
     
@@ -25,7 +25,7 @@ public class CloudyView: UIView {
         }
     }
     
-    // MARK: Initializers
+    // MARK: Life Cycle
     
     override public init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,9 +43,13 @@ public class CloudyView: UIView {
     
     override public func drawRect(rect: CGRect) {
         super.drawRect(rect)
-        let height = bounds.size.height - (cloudsShadowOffset.height + cloudsShadowRadius)
-        let cloudsPath = pathForCloudsWithMinSize(height * minCloudSizeRatio, height: height)
-        drawCloudsWithPath(cloudsPath)
+        drawClouds()
+    }
+    
+    // MARK: Public Functions
+    
+    public func reload() {
+        drawClouds()
     }
     
 }
@@ -53,6 +57,12 @@ public class CloudyView: UIView {
 internal extension CloudyView {
     
     // - Drawings -
+    
+    internal func drawClouds() {
+        let height = bounds.size.height - (cloudsShadowOffset.height + cloudsShadowRadius)
+        let cloudsPath = pathForCloudsWithMinSize(height * minCloudSizeRatio, height: height)
+        drawCloudsWithPath(cloudsPath)
+    }
     
     internal func drawCloudsWithPath(cloudsPath: UIBezierPath) {
         cloudsLayer.removeFromSuperlayer()
