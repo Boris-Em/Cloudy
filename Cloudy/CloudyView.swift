@@ -11,19 +11,57 @@ import UIKit
 @IBDesignable
 public class CloudyView: UIView {
     
-    @IBInspectable public var cloudsColor = UIColor.whiteColor()
-    @IBInspectable public var cloudsShadowColor = UIColor.darkGrayColor()
-    @IBInspectable public var cloudsShadowRadius: CGFloat = 1.0
-    @IBInspectable public var cloudsShadowOpacity: Float = 1.0
-    @IBInspectable public var minCloudSizeRatio: CGFloat = 0.2
-    public var cloudsShadowOffset = CGSize(width: 0.0, height: 1.0)
-    public var orientation = Orientation.Down
-    
-    private var cloudsLayer = CAShapeLayer() {
+    @IBInspectable public var cloudsColor = UIColor.whiteColor() {
         didSet {
-            self.layer.addSublayer(cloudsLayer)
+            cloudsLayer.fillColor = cloudsColor.CGColor
+            paddingLayer.backgroundColor = cloudsColor.CGColor
         }
     }
+    
+    @IBInspectable public var cloudsShadowColor = UIColor.darkGrayColor() {
+        didSet {
+            cloudsLayer.shadowColor = cloudsShadowColor.CGColor
+        }
+    }
+    
+    @IBInspectable public var cloudsShadowRadius: CGFloat = 1.0 {
+        didSet {
+            drawClouds()
+        }
+    }
+    
+    @IBInspectable public var cloudsShadowOpacity: Float = 1.0 {
+        didSet {
+            cloudsLayer.shadowOpacity = cloudsShadowOpacity
+        }
+    }
+    
+    public var cloudsShadowOffset = CGSize(width: 0.0, height: 1.0) {
+        didSet {
+            cloudsLayer.shadowOffset = cloudsShadowOffset
+        }
+    }
+    
+    @IBInspectable public var minCloudSizeRatio: CGFloat = 0.2 {
+        didSet {
+            drawClouds()
+        }
+    }
+    
+    @IBInspectable public var padding: CGFloat = 0.2 {
+        didSet {
+            drawClouds()
+        }
+    }
+    
+    public var orientation = Orientation.Down {
+        didSet {
+            reload()
+        }
+    }
+    
+    private var cloudsLayer = CAShapeLayer()
+    private var paddingLayer = CAShapeLayer()
     
     // MARK: Life Cycle
     
