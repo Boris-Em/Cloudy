@@ -15,8 +15,8 @@ public class CloudyView: UIView {
     public var cloudsShadowColor = UIColor.darkGrayColor()
     public var cloudsShadowRadius: CGFloat = 1.0
     public var cloudsShadowOpacity: Float = 1.0
-    public var minCloudSize = 10.0
-    public var maxCloudSize = 100.0
+    public var minCloudSize: CGFloat = 10.0
+    public var orientation = Orientation.Down
     
     private var cloudsLayer = CAShapeLayer() {
         didSet {
@@ -24,10 +24,26 @@ public class CloudyView: UIView {
         }
     }
     
+    // MARK: Initializers
+    
+    override public init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    private func commonInit() {
+        cloudsLayer.masksToBounds = true
+    }
+    
     override public func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
-        let cloudsPath = pathForCloudsWithMinSize(minCloudSize, maxSize: maxCloudSize, height: bounds.size.height)
+        let cloudsPath = pathForCloudsWithMinSize(minCloudSize, height: bounds.size.height)
         drawCloudsWithPath(cloudsPath)
     }
     
@@ -55,13 +71,13 @@ internal extension CloudyView {
     
     // - Paths -
     
-    internal func pathForCloudsWithMinSize(minSize: Double, maxSize: Double, height: CGFloat) -> UIBezierPath {
-        var offset: CGFloat = 0.0
+    internal func pathForCloudsWithMinSize(minSize: CGFloat, height: CGFloat) -> UIBezierPath {
+        var xOffset: CGFloat = 0.0
         let cloudsPath = UIBezierPath()
         var previousCloudSize: CGFloat = 0.0
         
-        while offset < bounds.size.width {
-            let cloudPath = randomPathForCloudWithMinSize(minSize, maxSize: maxSize)
+        while xOffset < bounds.size.width {
+            let cloudPath = randomPathForCloudWithMinSize(minSize, maxSize: height)
             
             let minRange = max(previousCloudSize - (cloudPath.bounds.size.width / 2.0), previousCloudSize / 2.0)
             let maxRange = previousCloudSize - minRange
@@ -71,9 +87,11 @@ internal extension CloudyView {
             let uRandom = arc4random_uniform(UInt32(uMaxRange)) + UInt32(minRange)
             let random: CGFloat = shouldInverse ? -CGFloat(uRandom) : CGFloat(uRandom)
             
-            offset = offset + random
+            xOffset = xOffset + random
             
-            cloudPath.applyTransform(CGAffineTransformMakeTranslation(offset, height - (cloudPath.bounds.size.height / 2.0)))
+            let yOffset = orientation == .Up ? height - (cloudPath.bounds.size.height / 2.0) : -(cloudPath.bounds.size.height / 2.0)
+            
+            cloudPath.applyTransform(CGAffineTransformMakeTranslation(xOffset, yOffset))
             cloudsPath.appendPath(cloudPath)
             
             previousCloudSize = cloudPath.bounds.size.width
@@ -82,11 +100,16 @@ internal extension CloudyView {
         return cloudsPath
     }
     
-    internal func randomPathForCloudWithMinSize(minSize: Double, maxSize: Double) -> UIBezierPath {
-        let randomSize = CGFloat(arc4random_uniform(UInt32(maxSize)) + UInt32(minSize))
+    internal func randomPathForCloudWithMinSize(minSize: CGFloat, maxSize: CGFloat) -> UIBezierPath {
+        let randomSize = CGFloat(arc4random_uniform(UInt32(maxSize * 2)) + UInt32(minSize))
         let cloudPath = UIBezierPath(ovalInRect: CGRectMake(0.0, 0.0, randomSize, randomSize))
         
         return cloudPath
     }
     
+}
+
+public enum Orientation {
+    case Up
+    case Down
 }
