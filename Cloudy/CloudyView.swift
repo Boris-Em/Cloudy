@@ -97,9 +97,22 @@ internal extension CloudyView {
     // - Drawings -
     
     internal func drawClouds() {
-        let height = bounds.size.height - (cloudsShadowOffset.height + cloudsShadowRadius)
-        let cloudsPath = pathForCloudsWithMinSize(height * minCloudSizeRatio, height: height)
-        drawCloudsWithPath(cloudsPath)
+        let cloudsHeight = bounds.size.height - (cloudsShadowOffset.height + cloudsShadowRadius * 2)
+        if let cloudsPath = pathForCloudsWithMinSize(cloudsHeight * minCloudSizeRatio, height: bounds.size.height, cloudsHeight: cloudsHeight, padding: cloudsHeight * padding) {
+            drawCloudsWithPath(cloudsPath)
+            
+            if padding > 0.0 {
+                drawPaddingWithHeight(cloudsHeight * padding)
+            }
+        }
+    }
+    
+    internal func drawPaddingWithHeight(height: CGFloat) {
+        paddingLayer.removeFromSuperlayer()
+        let yOffset = orientation == .Up ? bounds.size.height - height: 0.0
+        paddingLayer.frame = CGRectMake(0.0, yOffset, bounds.size.width, height)
+        paddingLayer.backgroundColor = cloudsColor.CGColor
+        layer.addSublayer(paddingLayer)
     }
     
     internal func drawCloudsWithPath(cloudsPath: UIBezierPath) {
@@ -120,13 +133,23 @@ internal extension CloudyView {
     
     // - Paths -
     
-    internal func pathForCloudsWithMinSize(minSize: CGFloat, height: CGFloat) -> UIBezierPath {
+    internal func pathForCloudsWithMinSize(minSize: CGFloat, height: CGFloat, cloudsHeight: CGFloat, padding: CGFloat) -> UIBezierPath? {
+        let cloudsHeight = cloudsHeight - padding
+        
+        guard cloudsHeight > minSize else {
+            return nil
+        }
+        
         var xOffset: CGFloat = 0.0
         let cloudsPath = UIBezierPath()
         var previousCloudSize: CGFloat = 0.0
         
         while xOffset < bounds.size.width {
-            let cloudPath = randomPathForCloudWithMinSize(minSize, maxSize: height)
+            let cloudPath = randomPathForCloudWithMinSize(minSize, maxSize: cloudsHeight)
+            
+            if xOffset == 0.0 {
+                xOffset = -CGFloat(arc4random_uniform(UInt32(cloudPath.bounds.size.width / 2.0)))
+            }
             
             let minRange = max(previousCloudSize - (cloudPath.bounds.size.width / 2.0), previousCloudSize / 2.0)
             let maxRange = previousCloudSize - minRange
@@ -138,7 +161,7 @@ internal extension CloudyView {
             
             xOffset = xOffset + random
             
-            let yOffset = orientation == .Up ? height - (cloudPath.bounds.size.height / 2.0) : -(cloudPath.bounds.size.height / 2.0)
+            let yOffset = orientation == .Up ? height - (cloudPath.bounds.size.height / 2.0) : -(cloudPath.bounds.size.height / 2.0) + padding
             
             cloudPath.applyTransform(CGAffineTransformMakeTranslation(xOffset, yOffset))
             cloudsPath.appendPath(cloudPath)
