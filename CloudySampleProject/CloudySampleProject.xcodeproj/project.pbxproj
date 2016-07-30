@@ -13,6 +13,7 @@
 		C31C06F61D4C42B300A8A46D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C31C06F51D4C42B300A8A46D /* Assets.xcassets */; };
 		C31C06F91D4C42B300A8A46D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C31C06F71D4C42B300A8A46D /* LaunchScreen.storyboard */; };
 		C31C07041D4C42B300A8A46D /* CloudySampleProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31C07031D4C42B300A8A46D /* CloudySampleProjectTests.swift */; };
+		C31C07101D4C42F700A8A46D /* CloudyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31C070F1D4C42F700A8A46D /* CloudyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		C31C06FF1D4C42B300A8A46D /* CloudySampleProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CloudySampleProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C31C07031D4C42B300A8A46D /* CloudySampleProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudySampleProjectTests.swift; sourceTree = "<group>"; };
 		C31C07051D4C42B300A8A46D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C31C070F1D4C42F700A8A46D /* CloudyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CloudyView.swift; path = ../Cloudy/CloudyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 		C31C06E21D4C42B300A8A46D = {
 			isa = PBXGroup;
 			children = (
+				C31C070E1D4C42D300A8A46D /* Cloudy */,
 				C31C06ED1D4C42B300A8A46D /* CloudySampleProject */,
 				C31C07021D4C42B300A8A46D /* CloudySampleProjectTests */,
 				C31C06EC1D4C42B300A8A46D /* Products */,
@@ -94,6 +97,14 @@
 				C31C07051D4C42B300A8A46D /* Info.plist */,
 			);
 			path = CloudySampleProjectTests;
+			sourceTree = "<group>";
+		};
+		C31C070E1D4C42D300A8A46D /* Cloudy */ = {
+			isa = PBXGroup;
+			children = (
+				C31C070F1D4C42F700A8A46D /* CloudyView.swift */,
+			);
+			name = Cloudy;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C31C06F11D4C42B300A8A46D /* ViewController.swift in Sources */,
+				C31C07101D4C42F700A8A46D /* CloudyView.swift in Sources */,
 				C31C06EF1D4C42B300A8A46D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
