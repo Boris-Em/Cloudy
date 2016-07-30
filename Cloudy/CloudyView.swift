@@ -8,14 +8,15 @@
 
 import UIKit
 
+@IBDesignable
 public class CloudyView: UIView {
     
-    public var cloudsColor = UIColor.whiteColor()
+    @IBInspectable public var cloudsColor = UIColor.whiteColor()
+    @IBInspectable public var cloudsShadowColor = UIColor.darkGrayColor()
+    @IBInspectable public var cloudsShadowRadius: CGFloat = 1.0
+    @IBInspectable public var cloudsShadowOpacity: Float = 1.0
+    @IBInspectable public var minCloudSizeRatio: CGFloat = 0.5
     public var cloudsShadowOffset = CGSize(width: 0.0, height: 1.0)
-    public var cloudsShadowColor = UIColor.darkGrayColor()
-    public var cloudsShadowRadius: CGFloat = 1.0
-    public var cloudsShadowOpacity: Float = 1.0
-    public var minCloudSizeRatio: CGFloat = 0.5
     public var orientation = Orientation.Down
     
     private var cloudsLayer = CAShapeLayer() {
