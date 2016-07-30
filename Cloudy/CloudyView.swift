@@ -171,7 +171,7 @@ internal extension CloudyView {
         var previousCloudSize: CGFloat = 0.0
         
         while xOffset < bounds.size.width {
-            let cloudPath = randomPathForCloudWithMinSize(minSize, maxSize: cloudsHeight)
+            let cloudPath = CloudyView.randomPathForCloudWithMinSize(minSize, maxSize: cloudsHeight)
             
             if xOffset == 0.0 {
                 xOffset = -CGFloat(arc4random_uniform(UInt32(cloudPath.bounds.size.width / 2.0)))
@@ -198,7 +198,7 @@ internal extension CloudyView {
         return cloudsPath
     }
     
-    internal func randomPathForCloudWithMinSize(minSize: CGFloat, maxSize: CGFloat) -> UIBezierPath {
+    class internal func randomPathForCloudWithMinSize(minSize: CGFloat, maxSize: CGFloat) -> UIBezierPath {
         let randomSize = CGFloat(arc4random_uniform(UInt32(maxSize * 2 - minSize * 2)) + UInt32(minSize * 2))
         let cloudPath = UIBezierPath(ovalInRect: CGRectMake(0.0, 0.0, randomSize, randomSize))
         
