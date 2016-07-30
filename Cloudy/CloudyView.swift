@@ -24,7 +24,21 @@ public class CloudyView: UIView {
         super.drawRect(rect)
         
         let cloudsPath = pathForCloudsWithMinSize(minCloudSize, maxSize: maxCloudSize, height: bounds.size.height)
+        drawCloudsWithPath(cloudsPath)
+    }
+    
+}
+
+internal extension CloudyView {
+    
+    // - Drawings -
+    
+    internal func drawCloudsWithPath(cloudsPath: UIBezierPath) {
+        cloudsLayer.removeFromSuperlayer()
+        cloudsLayer.frame = bounds
         cloudsLayer.path = cloudsPath.CGPath
+        cloudsLayer.fillColor = cloudsColor.CGColor
+        layer.addSublayer(cloudsLayer)
     }
     
 }
@@ -50,8 +64,6 @@ internal extension CloudyView {
             let random: CGFloat = shouldInverse ? -CGFloat(uRandom) : CGFloat(uRandom)
             
             offset = offset + random
-            
-            print(offset)
             
             cloudPath.applyTransform(CGAffineTransformMakeTranslation(offset, height - (cloudPath.bounds.size.height / 2.0)))
             cloudsPath.appendPath(cloudPath)
