@@ -8,9 +8,13 @@
 
 import UIKit
 
+/** Random Cloudy Skies - Cloudy is a simple UIView subclass that lets you generate random clouds.
+ */
 @IBDesignable
 public class CloudyView: UIView {
     
+    /** The color of the clouds. Defaults to white.
+     */
     @IBInspectable public var cloudsColor = UIColor.whiteColor() {
         didSet {
             cloudsLayer.fillColor = cloudsColor.CGColor
@@ -18,42 +22,57 @@ public class CloudyView: UIView {
         }
     }
     
+    /** The color of the clouds' shadow. Default to darkGrayColor.
+     */
     @IBInspectable public var cloudsShadowColor = UIColor.darkGrayColor() {
         didSet {
             cloudsLayer.shadowColor = cloudsShadowColor.CGColor
         }
     }
     
+    /** The radius of the clouds' shadow. Defaults to 1.0.
+     */
     @IBInspectable public var cloudsShadowRadius: CGFloat = 1.0 {
         didSet {
             drawClouds()
         }
     }
     
+    /** The opacity of the clouds' shadow. Defaults to 1.0.
+     */
     @IBInspectable public var cloudsShadowOpacity: Float = 1.0 {
         didSet {
             cloudsLayer.shadowOpacity = cloudsShadowOpacity
         }
     }
     
+    /** The offset of the clouds' shadow. Defaults to (0.0, 1.0).
+     */
     public var cloudsShadowOffset = CGSize(width: 0.0, height: 1.0) {
         didSet {
             cloudsLayer.shadowOffset = cloudsShadowOffset
         }
     }
     
+    /** The minimum size of the clouds as a ratio of the view's height. From 0.0 to 1.0, 0.0 being 0% of the view's height and 1.0 being 100% of the view's height.
+     Defaults to 0.2.
+     */
     @IBInspectable public var minCloudSizeRatio: CGFloat = 0.2 {
         didSet {
             drawClouds()
         }
     }
     
+    /** A padding that will be filled with the color of `cloudsColor`. The padding will be at the top, or bottom of the view depending on the property `orientation`. It is expressed as a value between 0.0 and 1.0, 0.0 meaning no padding, and 1.0 that the view will be filled with the padding. Defaults to 0.2.
+     */
     @IBInspectable public var padding: CGFloat = 0.2 {
         didSet {
             drawClouds()
         }
     }
     
+    /** The orientation of the clouds. Defaults to `Down`.
+     */
     public var orientation = Orientation.Down {
         didSet {
             reload()
