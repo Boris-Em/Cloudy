@@ -79,8 +79,8 @@ public class CloudyView: UIView {
         cloudsLayer.masksToBounds = true
     }
     
-    override public func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override public func layoutSubviews() {
+        super.layoutSubviews()
         drawClouds()
     }
     
