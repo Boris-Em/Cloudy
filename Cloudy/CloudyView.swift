@@ -11,6 +11,10 @@ import UIKit
 public class CloudyView: UIView {
     
     public var cloudsColor = UIColor.whiteColor()
+    public var cloudsShadowOffset = CGSize(width: 0.0, height: 1.0)
+    public var cloudsShadowColor = UIColor.darkGrayColor()
+    public var cloudsShadowRadius: CGFloat = 1.0
+    public var cloudsShadowOpacity: Float = 1.0
     public var minCloudSize = 10.0
     public var maxCloudSize = 100.0
     
@@ -38,6 +42,10 @@ internal extension CloudyView {
         cloudsLayer.frame = bounds
         cloudsLayer.path = cloudsPath.CGPath
         cloudsLayer.fillColor = cloudsColor.CGColor
+        cloudsLayer.shadowOffset = cloudsShadowOffset
+        cloudsLayer.shadowColor = cloudsShadowColor.CGColor
+        cloudsLayer.shadowRadius = cloudsShadowRadius
+        cloudsLayer.shadowOpacity = cloudsShadowOpacity
         layer.addSublayer(cloudsLayer)
     }
     
