@@ -105,6 +105,8 @@ public class CloudyView: UIView {
     
     // MARK: Public Functions
     
+    /** Reloads the view, redrawing the clouds.
+     */
     public func reload() {
         drawClouds()
     }
@@ -113,7 +115,7 @@ public class CloudyView: UIView {
 
 internal extension CloudyView {
     
-    // - Drawings -
+    // MARK: Drawings
     
     internal func drawClouds() {
         let cloudsHeight = bounds.size.height - (cloudsShadowOffset.height + cloudsShadowRadius * 2)
@@ -150,7 +152,7 @@ internal extension CloudyView {
 
 internal extension CloudyView {
     
-    // - Paths -
+    // MARK: Paths
     
     internal func pathForCloudsWithMinSize(minSize: CGFloat, height: CGFloat, cloudsHeight: CGFloat, padding: CGFloat) -> UIBezierPath? {
         let cloudsHeight = cloudsHeight - padding
