@@ -9,17 +9,24 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var topCloudyView: CloudyView!
+    @IBOutlet weak var bottomCloudyView: CloudyView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        bottomCloudyView.orientation = .Up
+        bottomCloudyView.cloudsShadowOffset = CGSize(width: 0.0, height: -1.0)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func handleTapReloadButton(sender: AnyObject) {
+        topCloudyView.reload()
+        bottomCloudyView.reload()
+    }
 
 }
 

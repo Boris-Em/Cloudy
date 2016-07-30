@@ -18,23 +18,68 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Erp-71-siy" customClass="CloudyView" customModule="CloudySampleProject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                <color key="backgroundColor" red="0.43529412150000002" green="0.7019608021" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="Ofd-7K-ZHL"/>
+                                    <constraint firstAttribute="height" constant="100" id="Ofd-7K-ZHL"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cloudy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vuD-OC-ixL">
+                                <rect key="frame" x="242" y="276" width="115" height="48"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="35"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mQ4-7X-A6q" userLabel="ContainerView">
+                                <rect key="frame" x="0.0" y="324" width="600" height="176"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mdu-fb-Urt">
+                                        <rect key="frame" x="276" y="121" width="47" height="33"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                        <state key="normal" title="Reload">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="handleTapReloadButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jNY-Dg-byo"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Mdu-fb-Urt" firstAttribute="centerX" secondItem="mQ4-7X-A6q" secondAttribute="centerX" id="789-4O-acm"/>
+                                    <constraint firstItem="Mdu-fb-Urt" firstAttribute="centerY" secondItem="mQ4-7X-A6q" secondAttribute="centerY" id="P4j-EX-hJ3"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ISw-xB-2MD" customClass="CloudyView" customModule="CloudySampleProject" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="500" width="600" height="100"/>
+                                <color key="backgroundColor" red="0.43529412150000002" green="0.7019608021" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.43529412150000002" green="0.7019608021" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="ISw-xB-2MD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="5Jq-wd-Hjb"/>
                             <constraint firstAttribute="trailing" secondItem="Erp-71-siy" secondAttribute="trailing" id="6Pw-Rd-6aq"/>
+                            <constraint firstItem="mQ4-7X-A6q" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="8z0-3D-sKs"/>
+                            <constraint firstItem="mQ4-7X-A6q" firstAttribute="top" secondItem="vuD-OC-ixL" secondAttribute="bottom" id="De5-3X-OoM"/>
+                            <constraint firstAttribute="trailing" secondItem="ISw-xB-2MD" secondAttribute="trailing" id="Fu7-70-6ty"/>
+                            <constraint firstAttribute="trailing" secondItem="mQ4-7X-A6q" secondAttribute="trailing" id="I0Z-JD-Xsq"/>
+                            <constraint firstItem="ISw-xB-2MD" firstAttribute="top" secondItem="mQ4-7X-A6q" secondAttribute="bottom" id="SgY-N0-LlR"/>
                             <constraint firstItem="Erp-71-siy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="UP1-VC-ysO"/>
+                            <constraint firstItem="ISw-xB-2MD" firstAttribute="height" secondItem="Erp-71-siy" secondAttribute="height" id="cE9-w2-cyn"/>
                             <constraint firstItem="Erp-71-siy" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="loZ-PR-rWf"/>
+                            <constraint firstItem="vuD-OC-ixL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pCw-as-jHx"/>
+                            <constraint firstAttribute="bottom" secondItem="ISw-xB-2MD" secondAttribute="bottom" id="t3f-rD-ABT"/>
+                            <constraint firstItem="vuD-OC-ixL" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="wlb-15-zvC"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="bottomCloudyView" destination="ISw-xB-2MD" id="EOy-Vf-uxa"/>
+                        <outlet property="topCloudyView" destination="Erp-71-siy" id="3xm-8d-nkP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="443" y="449"/>
         </scene>
     </scenes>
 </document>
