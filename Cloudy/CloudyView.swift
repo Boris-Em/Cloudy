@@ -79,6 +79,11 @@ public class CloudyView: UIView {
         }
     }
     
+    public enum Orientation {
+        case Up
+        case Down
+    }
+    
     private var cloudsLayer = CAShapeLayer()
     private var paddingLayer = CAShapeLayer()
     
@@ -200,9 +205,4 @@ internal extension CloudyView {
         return cloudPath
     }
     
-}
-
-public enum Orientation {
-    case Up
-    case Down
 }
