@@ -1,0 +1,5 @@
+anguage: objective-c
+osx_image: xcode7.3
+
+script:
+- xcodebuild clean build test -project "CloudySampleProject/CloudySampleProject.xcodeproj" -scheme CloudySampleProject -sdk iphonesimulator9.3 -destination "OS=9.3,name=iPhone 5S" ONLY_ACTIVE_ARCH=NO
