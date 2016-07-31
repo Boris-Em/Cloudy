@@ -7,6 +7,8 @@
 
 <p align="center"><img src="https://s31.postimg.org/a0lsa8b2z/Banner.jpg"/></p>	
 
+Cloudy is a simple UIView subclass that lets you generate random yet beautiful clouds.
+
 ## Table of Contents
 
 * [**Project Details**](#project-details)  
