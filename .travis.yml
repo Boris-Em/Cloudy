@@ -1,4 +1,4 @@
-anguage: objective-c
+language: objective-c
 osx_image: xcode7.3
 
 script:
