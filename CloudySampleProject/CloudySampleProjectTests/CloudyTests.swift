@@ -20,6 +20,22 @@ class CloudyTests: XCTestCase {
         super.tearDown()
     }
     
+    func testInitWithFrame() {
+        let cloudyView = CloudyView(frame: CGRectMake(0.0, 0.0, 500.0, 500.0))
+        XCTAssertNotNil(cloudyView, "A fully initialized CloudyView instance should be instanciated.")
+    }
+    
+    func testReload() {
+        let cloudyView = CloudyView(frame: CGRectMake(0.0, 0.0, 500.0, 500.0))
+        cloudyView.reload()
+        if let cloudsLayer = cloudyView.layer.sublayers?.first as? CAShapeLayer {
+            XCTAssertEqual(cloudsLayer.frame, cloudyView.bounds)
+            let path = cloudsLayer.path
+            cloudyView.reload()
+            XCTAssertFalse(CGPathEqualToPath(path, cloudsLayer.path))
+        }
+    }
+    
     func testRandomPathForCloudWithMinSize() {
         let numberOfTests = 500
         
