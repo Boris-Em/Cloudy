@@ -64,3 +64,29 @@ The other way to install **Cloudy**, is to drag and drop the *Cloudy* folder int
  let cloudyView = Cloudy(frame: CGRectMake(0.0, 0.0, 200.0, 200.0))
  view.addSubview(Cloudy)
  ```
+## Documentation
+All of the methods and properties available for **Cloudy** are documented below.
+
+##### `cloudsColor`  
+The color of the clouds. Defaults to white.
+
+##### `cloudsShadowColor`  
+The color of the clouds' shadow. Default to darkGrayColor.
+
+##### `cloudsShadowRadius`  
+The radius of the clouds' shadow. Defaults to 1.0.
+
+##### `cloudsShadowOpacity`  
+The opacity of the clouds' shadow. Defaults to 1.0.
+
+##### `cloudsShadowOffset`  
+The offset of the clouds' shadow. Defaults to (0.0, 1.0).
+
+##### `minCloudSizeRatio`  
+The minimum size of the clouds as a ratio of the view's height. From 0.0 to 1.0, 0.0 being 0% of the view's height and 1.0 being 100% of the view's height. Defaults to 0.2.
+
+##### `padding`  
+A padding that will be filled with the color of `cloudsColor`. The padding will be at the top, or bottom of the view depending on the property `orientation`. It is expressed as a value between 0.0 and 1.0, 0.0 meaning no padding, and 1.0 that the view will be filled with the padding. Defaults to 0.2.
+
+##### `orientation`  
+The orientation of the clouds. Defaults to `Down`.
