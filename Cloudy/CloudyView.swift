@@ -8,7 +8,7 @@
 
 import UIKit
 
-/** Random Cloudy Skies - Cloudy is a simple UIView subclass that lets you generate random yet beautiful clouds.
+/** Random Cloudy Skies for iOS - Cloudy is a simple UIView subclass that lets you generate random yet beautiful clouds.
  */
 @IBDesignable
 public class CloudyView: UIView {
