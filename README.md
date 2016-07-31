@@ -25,6 +25,8 @@ Cloudy is a simple UIView subclass that lets you generate random yet beautiful c
 
 Learn more about the **Cloudy** project, licensing, support etc.
 
+<p align="center"><img src="https://s32.postimg.org/7vkux4jg5/Cloudy_i_Phone.jpg"/></p>	
+
 ### Requirements
  - Requires iOS 7 or later. The sample project is optimized for iOS 9.
  - Requires Automatic Reference Counting (ARC).
