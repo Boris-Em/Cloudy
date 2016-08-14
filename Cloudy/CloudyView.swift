@@ -187,7 +187,7 @@ internal extension CloudyView {
             
             xOffset = xOffset + random
             
-            let yOffset = orientation == .Up ? height - (cloudPath.bounds.size.height / 2.0) : -(cloudPath.bounds.size.height / 2.0) + padding
+            let yOffset = orientation == .Up ? height - (cloudPath.bounds.size.height / 2.0) - padding : -(cloudPath.bounds.size.height / 2.0) + padding
             
             cloudPath.applyTransform(CGAffineTransformMakeTranslation(xOffset, yOffset))
             cloudsPath.appendPath(cloudPath)
