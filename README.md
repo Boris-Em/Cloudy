@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/Cloudy.svg?style=flat)](http://cocoadocs.org/docsets/Cloudy)
 [![Platform](https://img.shields.io/cocoapods/p/Cloudy.svg?style=flat)](http://cocoadocs.org/docsets/Cloudy)
 
-<p align="center"><img src="https://s31.postimg.org/a0lsa8b2z/Banner.jpg"/></p>	
+<p align="center"><img src="./.assets/Cloudy Banner.jpg"/></p>	
 
 Cloudy is a simple UIView subclass that lets you generate random yet beautiful clouds.
 
@@ -25,7 +25,7 @@ Cloudy is a simple UIView subclass that lets you generate random yet beautiful c
 
 Learn more about the **Cloudy** project, licensing, support etc.
 
-<p align="center"><img src="https://s32.postimg.org/7vkux4jg5/Cloudy_i_Phone.jpg"/></p>	
+<p align="center"><img src="./.assets/Cloudy_iPhone.jpg"/></p>	
 
 ### Requirements
  - Requires iOS 7 or later. The sample project is optimized for iOS 9.
